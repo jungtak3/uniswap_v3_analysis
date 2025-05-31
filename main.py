@@ -13,7 +13,9 @@ def check_data_file():
     """Check if required data file exists"""
     data_files = [
         'ETHUSDC_20181215_20250430.csv',
-        'downloaded_klines/ETHUSDC_20181215_20250430.csv'
+        'downloaded_klines/ETHUSDC_20181215_20250430.csv',
+        '../ETHUSDC_20181215_20250430.csv',
+        '../downloaded_klines/ETHUSDC_20181215_20250430.csv'
     ]
     
     for data_file in data_files:

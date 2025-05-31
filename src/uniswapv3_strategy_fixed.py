@@ -23,9 +23,31 @@ class UniswapV3StrategyFramework:
     Comprehensive framework for Uniswap V3 liquidity providing strategies
     """
     
-    def __init__(self, data_path='ETHUSDC_20181215_20250430.csv'):
+    def __init__(self, data_path=None):
         """Initialize the framework with price data"""
-        self.data_path = data_path
+        if data_path is None:
+            # Try multiple possible paths for the data file
+            possible_paths = [
+                'ETHUSDC_20181215_20250430.csv',
+                '../ETHUSDC_20181215_20250430.csv',
+                '../downloaded_klines/ETHUSDC_20181215_20250430.csv',
+                '../../downloaded_klines/ETHUSDC_20181215_20250430.csv'
+            ]
+            
+            self.data_path = None
+            for path in possible_paths:
+                import os
+                if os.path.exists(path):
+                    self.data_path = path
+                    break
+            
+            if self.data_path is None:
+                raise FileNotFoundError(
+                    f"Data file not found. Please ensure ETHUSDC_20181215_20250430.csv is in one of these locations:\n" +
+                    "\n".join(f"  - {path}" for path in possible_paths)
+                )
+        else:
+            self.data_path = data_path
         self.data = None
         self.train_data = None
         self.test_data = None

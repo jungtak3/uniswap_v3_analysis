@@ -10,15 +10,33 @@ import matplotlib.dates as mdates
 from datetime import datetime
 import seaborn as sns
 
-def load_and_split_data(data_path='downloaded_klines/ETHUSDC_20181215_20250430.csv', test_size=0.3):
+def load_and_split_data(data_path=None, test_size=0.3):
     """Load and split data exactly like the strategy framework"""
     
-    # Check if file exists, try alternative path
-    try:
-        data = pd.read_csv(data_path)
-    except FileNotFoundError:
-        # Try the path used in the strategy file
-        data = pd.read_csv('ETHUSDC_20181215_20250430.csv')
+    if data_path is None:
+        # Try multiple possible paths for the data file
+        possible_paths = [
+            'ETHUSDC_20181215_20250430.csv',
+            '../ETHUSDC_20181215_20250430.csv',
+            '../downloaded_klines/ETHUSDC_20181215_20250430.csv',
+            '../../downloaded_klines/ETHUSDC_20181215_20250430.csv'
+        ]
+        
+        data_path = None
+        for path in possible_paths:
+            import os
+            if os.path.exists(path):
+                data_path = path
+                break
+        
+        if data_path is None:
+            raise FileNotFoundError(
+                f"Data file not found. Please ensure ETHUSDC_20181215_20250430.csv is in one of these locations:\n" +
+                "\n".join(f"  - {path}" for path in possible_paths)
+            )
+    
+    # Load data
+    data = pd.read_csv(data_path)
     
     # Convert timestamps (same as strategy framework)
     data['timestamp'] = pd.to_datetime(data['open_time'], unit='ms')

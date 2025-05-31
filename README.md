@@ -1,6 +1,9 @@
 # Uniswap V3 전략 분석 도구
 
-간단하게 만듬
+간단하게 만듬..
+fee, spread 등 확실한 데이터를 구하기 어려움이 있었음
+Ethusdt는 중간에 비어 있는 데이터가 없는데
+ethusdc는 있음 바이낸스 문제
 
 ## 📁 프로젝트 구조
 
@@ -21,7 +24,7 @@ uniswap_v3_analysis_repo/
 ### 1. 저장소 클론
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/jungtak3/uniswap_v3_analysis
 cd uniswap_v3_analysis_repo
 ```
 

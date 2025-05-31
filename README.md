@@ -1,6 +1,6 @@
 # Uniswap V3 전략 분석 도구
 
-Uniswap V3 유동성 공급 전략을 분석하고 백테스팅하는 Python 프로젝트입니다.
+간단하게 만듬
 
 ## 📁 프로젝트 구조
 
@@ -65,13 +65,3 @@ python main.py
 - `uniswap_v3_market_regimes.png` - 시장 체제 분석
 - `uniswap_v3_strategy_analysis_fixed.png` - 전략 성과 비교
 - `uniswap_v3_strategy_performance_fixed.csv` - 상세 성과 데이터
-
-## ⚠️ 주의사항
-
-- Python 3.7 이상 필요
-- 충분한 메모리 권장 (최소 4GB)
-- 데이터 파일이 없으면 실행되지 않습니다
-
-## 📝 라이선스
-
-MIT License
